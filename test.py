@@ -23,7 +23,7 @@ shuffle = st.session_state.shuffle
 
 
 def check_ans(ans):
-    if ans == 'a':
+    if ans == shuffle.iloc[st.session_state.ind]['English']:
         st.session_state.correct = True
     else:
         st.session_state.correct = False
