@@ -18,6 +18,8 @@ if 'correct' not in st.session_state:
     st.session_state.correct = False
 if 'state' not in st.session_state:
     st.session_state.state = 0
+if 'ans' not in st.session_state:
+    st.session_state.ans = ""
 
 shuffle = st.session_state.shuffle
 
@@ -29,6 +31,7 @@ def check_ans(ans):
         st.session_state.correct = False
 
     st.session_state.state = 1
+    st.session_state.ans = ans
 
 def next_qestion():
     st.session_state.ind += 1
@@ -53,7 +56,8 @@ def quiz():
             st.session_state.shuffle.at[st.session_state.ind, 'Correct'] = True
 
         else:
-            st.caption(shuffle.iloc[st.session_state.ind]['English'])
+            st.caption("Your Answer: "+st.session_state.ans)
+            st.caption("Correct Answer: "+shuffle.iloc[st.session_state.ind]['English'])
             st.error('INCORRECT!\n'+shuffle.iloc[st.session_state.ind]['Chinese'])
             st.session_state.shuffle.at[st.session_state.ind, 'Correct'] = False
             
